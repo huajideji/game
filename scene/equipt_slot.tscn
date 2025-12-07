@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl4vimrop30sj"]
+
+[ext_resource type="PackedScene" uid="uid://cedv46jpcrxx2" path="res://scene/item_slot.tscn" id="1_86eyo"]
+[ext_resource type="Script" uid="uid://bv75u0da5r1nx" path="res://scene/equipt_slot.gd" id="2_21itp"]
+
+[node name="MarginContainer" instance=ExtResource("1_86eyo")]
+script = ExtResource("2_21itp")
+
+[node name="TextureRect" parent="MarginContainer" index="0"]
+visible = false

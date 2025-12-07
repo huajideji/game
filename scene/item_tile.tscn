@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cwxb4x5kmt8x8"]
+
+[node name="item_tile" type="MarginContainer"]
+offset_right = 28.0
+offset_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
