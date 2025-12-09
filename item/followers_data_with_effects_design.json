@@ -1,0 +1,203 @@
+{
+  "version": "1.1",
+  "last_updated": "2024-01-02",
+  "followers": [
+    {
+      "id": "follower_001",
+      "name": "勇敢的步兵",
+      "description": "一个忠诚的步兵，总是冲在最前线。",
+      "item_type": "FOLLOWER",
+      "rarity": "COMMON",
+      "price": 10,
+      "health": 2,
+      "attack": 1,
+      "cost": 1,
+      "keywords": ["TAUNT"],
+      "icon_path": "res://assets/follwer/skeleton swordfighter.png",
+      "effects": [
+        {
+          "trigger": "BATTLECRY",
+          "conditions": [],
+          "target": {
+            "type": "ALL_ALLIES",
+            "count": -1
+          },
+          "actions": [
+            {
+              "type": "BUFF",
+              "attack_bonus": 1,
+              "health_bonus": 1,
+              "duration": "PERMANENT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "follower_002", 
+      "name": "精灵弓箭手",
+      "description": "精准的远程射手，能够在安全距离攻击敌人。",
+      "item_type": "FOLLOWER",
+      "rarity": "COMMON", 
+      "price": 15,
+      "health": 1,
+      "attack": 2,
+      "cost": 2,
+      "keywords": ["STEALTH"],
+      "icon_path": "res://assets/follwer/skeleton archer.png",
+      "effects": [
+        {
+          "trigger": "DEATHRATTLE",
+          "conditions": [],
+          "target": {
+            "type": "RANDOM_ENEMY_MINION",
+            "count": 1
+          },
+          "actions": [
+            {
+              "type": "DAMAGE",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "follower_007",
+      "name": "机械工程师",
+      "description": "擅长制造和改造机械的工程师。",
+      "item_type": "FOLLOWER",
+      "rarity": "UNCOMMON",
+      "price": 30,
+      "health": 3,
+      "attack": 2,
+      "cost": 3,
+      "keywords": ["BATTLECRY", "MAGNETIC"],
+      "icon_path": "res://assets/follwer/golem.png",
+      "effects": [
+        {
+          "trigger": "BATTLECRY",
+          "conditions": [
+            {
+              "type": "HAS_KEYWORD",
+              "keyword": "MAGNETIC",
+              "target": "SELF"
+            }
+          ],
+          "target": {
+            "type": "ALL_ALLIED_MINIONS_WITH_KEYWORD",
+            "keyword": "MECHANICAL"
+          },
+          "actions": [
+            {
+              "type": "BUFF",
+              "attack_bonus": 1,
+              "health_bonus": 1,
+              "duration": "PERMANENT"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "keyword_definitions": {
+    "TAUNT": "嘲讽 - 敌方必须先攻击具有嘲讽的随从",
+    "CHARGE": "冲锋 - 可以在召唤的回合立即攻击",
+    "DIVINE_SHIELD": "圣盾 - 免疫第一次受到的伤害",
+    "WINDFURY": "风怒 - 每回合可以攻击两次",
+    "STEALTH": "潜行 - 无法成为敌方法术或英雄技能的目标",
+    "DEATHRATTLE": "亡语 - 死亡时触发效果",
+    "BATTLECRY": "战吼 - 召唤时触发效果",
+    "LIFESTEAL": "吸血 - 造成的伤害会治疗你的英雄",
+    "POISONOUS": "剧毒 - 对任何随从造成伤害时消灭该随从",
+    "RUSH": "突袭 - 可以在召唤的回合攻击随从，但不能攻击英雄",
+    "MAGNETIC": "磁力 - 可以与其他机械随从融合"
+  },
+  "rarity_multipliers": {
+    "COMMON": 1.0,
+    "UNCOMMON": 1.5,
+    "RARE": 2.0,
+    "LEGENDARY": 3.0
+  },
+  "effect_definitions": {
+    "trigger_types": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "ON_ATTACK",
+      "ON_TAKE_DAMAGE",
+      "START_OF_TURN",
+      "END_OF_TURN"
+    ],
+    "condition_types": [
+      "HEALTH_LESS_THAN",
+      "HEALTH_GREATER_THAN",
+      "HAS_KEYWORD",
+      "MINION_COUNT",
+      "HERO_HEALTH",
+      "KEYWORD_COUNT"
+    ],
+    "target_types": [
+      "SELF",
+      "ALL_ALLIES",
+      "ALL_ENEMIES",
+      "RANDOM_ENEMY_MINION",
+      "RANDOM_ALLIED_MINION",
+      "ENEMY_HERO",
+      "ALLIED_HERO",
+      "ALL_ALLIED_MINIONS_WITH_KEYWORD",
+      "ALL_ENEMY_MINIONS_WITH_KEYWORD"
+    ],
+    "action_types": [
+      "DAMAGE",
+      "BUFF",
+      "SUMMON",
+      "HEAL",
+      "ADD_KEYWORD",
+      "REMOVE_KEYWORD",
+      "DRAW_CARD",
+      "GAIN_MANA",
+      "DESTROY"
+    ]
+  },
+  "design_explanation": {
+    "core_structure": {
+      "trigger": "触发时机，如BATTLECRY(入场)、DEATHRATTLE(退场)",
+      "conditions": "触发条件列表，支持多个条件组合",
+      "target": "效果作用目标选择规则",
+      "actions": "执行的效果列表，支持多个效果组合"
+    },
+    "condition_format": {
+      "type": "条件类型",
+      "value": "条件数值",
+      "target": "条件检测目标",
+      "comparison": "比较符：eq(等于), ne(不等于), lt(小于), gt(大于), lte(小于等于), gte(大于等于)"
+    },
+    "target_format": {
+      "type": "目标类型",
+      "count": "目标数量，-1表示所有",
+      "keyword": "目标必须拥有关键字（可选）"
+    },
+    "action_formats": {
+      "DAMAGE": {
+        "type": "DAMAGE",
+        "value": "伤害数值"
+      },
+      "BUFF": {
+        "type": "BUFF",
+        "attack_bonus": "攻击力加成",
+        "health_bonus": "生命值加成",
+        "duration": "持续时间：PERMANENT(永久), UNTIL_END_OF_TURN(本回合结束), NEXT_TURN(下一回合)"
+      },
+      "SUMMON": {
+        "type": "SUMMON",
+        "minion_id": "召唤的随从ID",
+        "count": "召唤数量",
+        "position": "召唤位置：FRONT(前排), BACK(后排), RANDOM(随机)"
+      },
+      "HEAL": {
+        "type": "HEAL",
+        "value": "治疗数值"
+      }
+    }
+  }
+}
