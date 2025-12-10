@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cwxb4x5kmt8x8"]
+[gd_scene load_steps=2 format=3 uid="uid://cwxb4x5kmt8x8"]
+
+[ext_resource type="Script" uid="uid://cto14jp0rgst1" path="res://scene/item_tile.gd" id="1_0ngda"]
 
 [node name="item_tile" type="MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -8,6 +10,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+script = ExtResource("1_0ngda")
 
 [node name="icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(64, 64)
