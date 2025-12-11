@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://50try87gv3x4"]
+[gd_scene load_steps=7 format=3 uid="uid://50try87gv3x4"]
 
-[ext_resource type="Script" uid="uid://o85rcf40c43a" path="res://scene/bag.gd" id="1_2imja"]
+[ext_resource type="Script" uid="uid://o85rcf40c43a" path="res://scene/bag/bag.gd" id="1_2imja"]
 [ext_resource type="Texture2D" uid="uid://bshc5auedbonu" path="res://assets/UI/01_TravelBookLite/Spritesheet/UI_TravelBook_SpritesheetInfo01a.png" id="1_73dir"]
 [ext_resource type="Texture2D" uid="uid://c6cmbiflscs5n" path="res://assets/UI/01_TravelBookLite/Spritesheet/UI_TravelBook_Spritesheet01a.png" id="2_rx6jb"]
-[ext_resource type="PackedScene" uid="uid://dl4vimrop30sj" path="res://scene/equipt_slot.tscn" id="4_x0fop"]
+[ext_resource type="PackedScene" uid="uid://cedv46jpcrxx2" path="res://scene/bag/item_slot.tscn" id="3_rx6jb"]
+[ext_resource type="PackedScene" uid="uid://dl4vimrop30sj" path="res://scene/bag/equipt_slot.tscn" id="4_x0fop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0fop"]
 atlas = ExtResource("1_73dir")
@@ -108,6 +109,9 @@ layout_mode = 2
 [node name="item_wrap" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/NinePatchRect/MarginContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
 columns = 8
+
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/NinePatchRect/MarginContainer2/ScrollContainer/MarginContainer/item_wrap" instance=ExtResource("3_rx6jb")]
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

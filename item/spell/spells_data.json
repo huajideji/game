@@ -1,0 +1,171 @@
+{
+  "version": "1.0",
+  "last_updated": "2024-01-01",
+  "spells": [
+    {
+      "id": "spell_001",
+      "name": "火球术",
+      "description": "向目标发射火球，造成3点伤害。",
+      "item_type": "SPELL",
+      "rarity": "COMMON",
+      "price": 15,
+      "spell_type": "DAMAGE",
+      "target_type": "ENEMY",
+      "cast_method": "COST",
+      "cost": 2,
+      "effect_value": 3,
+      "icon_path": "res://assets/spell/fireball.png"
+    },
+    {
+      "id": "spell_002",
+      "name": "召唤水元素",
+      "description": "召唤一个2/2的水元素为你作战。",
+      "item_type": "SPELL",
+      "rarity": "UNCOMMON",
+      "price": 25,
+      "spell_type": "SUMMON",
+      "target_type": "FRIENDLY",
+      "cast_method": "COST",
+      "cost": 3,
+      "summon_id": "follower_021",
+      "icon_path": "res://assets/spell/summon_water_elemental.png"
+    },
+    {
+      "id": "spell_003",
+      "name": "力量祝福",
+      "description": "使一个友方随从获得+2攻击力。",
+      "item_type": "SPELL",
+      "rarity": "COMMON",
+      "price": 10,
+      "spell_type": "BUFF",
+      "target_type": "FRIENDLY",
+      "cast_method": "COST",
+      "cost": 1,
+      "effect_value": 2,
+      "effect_attribute": "attack",
+      "icon_path": "res://assets/spell/strength_blessing.png"
+    },
+    {
+      "id": "spell_004",
+      "name": "暴风雪",
+      "description": "对所有敌方随从造成2点伤害，并使其冻结。",
+      "item_type": "SPELL",
+      "rarity": "RARE",
+      "price": 40,
+      "spell_type": "DAMAGE",
+      "target_type": "AREA",
+      "cast_method": "COST",
+      "cost": 5,
+      "effect_value": 2,
+      "additional_effect": "FREEZE",
+      "icon_path": "res://assets/spell/blizzard.png"
+    },
+    {
+      "id": "spell_005",
+      "name": "生命虹吸",
+      "description": "对敌方英雄造成3点伤害，并治疗你的英雄3点生命值。",
+      "item_type": "SPELL",
+      "rarity": "RARE",
+      "price": 35,
+      "spell_type": "DAMAGE",
+      "target_type": "ENEMY",
+      "cast_method": "COST",
+      "cost": 4,
+      "effect_value": 3,
+      "additional_effect": "LIFESTEAL",
+      "icon_path": "res://assets/spell/life_siphon.png"
+    },
+    {
+      "id": "spell_006",
+      "name": "奥术智慧",
+      "description": "抽两张牌。",
+      "item_type": "SPELL",
+      "rarity": "UNCOMMON",
+      "price": 20,
+      "spell_type": "BUFF",
+      "target_type": "FRIENDLY",
+      "cast_method": "COST",
+      "cost": 3,
+      "effect_value": 2,
+      "effect_attribute": "draw",
+      "icon_path": "res://assets/spell/arcane_intelligence.png"
+    },
+    {
+      "id": "spell_007",
+      "name": "腐蚀术",
+      "description": "每回合对敌方英雄造成2点伤害，持续3回合。",
+      "item_type": "SPELL",
+      "rarity": "RARE",
+      "price": 30,
+      "spell_type": "DAMAGE",
+      "target_type": "ENEMY",
+      "cast_method": "LOOP",
+      "loop_count": 3,
+      "loop_interval": 1,
+      "effect_value": 2,
+      "icon_path": "res://assets/spell/corruption.png"
+    },
+    {
+      "id": "spell_008",
+      "name": "野性成长",
+      "description": "获得一个空的法力水晶。",
+      "item_type": "SPELL",
+      "rarity": "RARE",
+      "price": 45,
+      "spell_type": "BUFF",
+      "target_type": "FRIENDLY",
+      "cast_method": "COST",
+      "cost": 2,
+      "effect_attribute": "mana_crystal",
+      "icon_path": "res://assets/spell/wild_growth.png"
+    },
+    {
+      "id": "spell_009",
+      "name": "精神控制",
+      "description": "获得一个敌方随从的控制权。",
+      "item_type": "SPELL",
+      "rarity": "LEGENDARY",
+      "price": 100,
+      "spell_type": "BUFF",
+      "target_type": "ENEMY",
+      "cast_method": "COST",
+      "cost": 10,
+      "effect_attribute": "control",
+      "icon_path": "res://assets/spell/mind_control.png"
+    },
+    {
+      "id": "spell_010",
+      "name": "烈焰风暴",
+      "description": "对所有敌方随从造成4点伤害。",
+      "item_type": "SPELL",
+      "rarity": "RARE",
+      "price": 50,
+      "spell_type": "DAMAGE",
+      "target_type": "AREA",
+      "cast_method": "COST",
+      "cost": 7,
+      "effect_value": 4,
+      "icon_path": "res://assets/spell/flame_strike.png"
+    }
+  ],
+  "spell_type_definitions": {
+    "DAMAGE": "伤害 - 对目标造成伤害",
+    "SUMMON": "召唤 - 召唤一个随从加入战场",
+    "BUFF": "增益 - 为目标提供正面效果或改变其属性"
+  },
+  "target_type_definitions": {
+    "ENEMY": "敌人 - 只能以敌方单位为目标",
+    "FRIENDLY": "友军 - 只能以友方单位为目标",
+    "AREA": "范围 - 影响特定区域内的所有单位"
+  },
+  "cast_method_definitions": {
+    "COST": "费用释放 - 消耗一定法力值释放",
+    "LOOP": "循环释放 - 在一定回合内持续生效"
+  },
+  "rarity_multipliers": {
+    "COMMON": 1.0,
+    "UNCOMMON": 1.5,
+    "RARE": 2.0,
+    "LEGENDARY": 3.0
+  }
+}

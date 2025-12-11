@@ -1,2 +1,0 @@
-extends Item_slot
-class_name Equipt_slot

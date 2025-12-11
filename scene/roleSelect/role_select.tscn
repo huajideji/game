@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://iheeo1bjx3pd"]
+
+[ext_resource type="Script" uid="uid://btijycvhbcift" path="res://scene/roleSelect/role_select.gd" id="1_13mlc"]
+[ext_resource type="Texture2D" uid="uid://bhx8aw3c6dv3t" path="res://icon.svg" id="1_t8ufe"]
+
+[node name="RoleSelect" type="Node2D"]
+script = ExtResource("1_13mlc")
+selected_role = null
+
+[node name="first" type="Panel" parent="."]
+offset_left = 51.0
+offset_top = 130.0
+offset_right = 300.0
+offset_bottom = 520.0
+
+[node name="name" type="Label" parent="first"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 36.0
+offset_right = 163.0
+offset_bottom = 59.0
+text = "一无所有者"
+
+[node name="pic" type="Sprite2D" parent="first"]
+position = Vector2(129, 146)
+texture = ExtResource("1_t8ufe")
+
+[node name="Label" type="Label" parent="first"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 238.0
+offset_right = 158.0
+offset_bottom = 261.0
+text = "3随从栏位"
+
+[node name="Label2" type="Label" parent="first"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 275.0
+offset_right = 158.0
+offset_bottom = 298.0
+text = "3法术栏位"
+
+[node name="Label3" type="Label" parent="first"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 321.0
+offset_right = 223.0
+offset_bottom = 370.0
+text = "初始随从:小鸡*3
+初始法术:香蕉*2 魔爆术*1"
+horizontal_alignment = 1
+
+[node name="second" type="Panel" parent="."]
+offset_left = 462.0
+offset_top = 130.0
+offset_right = 711.0
+offset_bottom = 520.0
+
+[node name="third" type="Panel" parent="."]
+offset_left = 845.0
+offset_top = 130.0
+offset_right = 1094.0
+offset_bottom = 520.0
+
+[node name="start" type="Button" parent="."]
+offset_left = 965.0
+offset_top = 565.0
+offset_right = 1082.0
+offset_bottom = 605.0
+text = "开始"
+
+[node name="back" type="Button" parent="."]
+offset_left = 57.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 68.0
+text = "返回主菜单"

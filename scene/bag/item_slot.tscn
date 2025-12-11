@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cedv46jpcrxx2"]
 
 [ext_resource type="Texture2D" uid="uid://bshc5auedbonu" path="res://assets/UI/01_TravelBookLite/Spritesheet/UI_TravelBook_SpritesheetInfo01a.png" id="1_f0ebj"]
-[ext_resource type="Script" uid="uid://bvpy42tqm76rs" path="res://scene/item_slot.gd" id="1_jlna8"]
-[ext_resource type="PackedScene" uid="uid://cwxb4x5kmt8x8" path="res://scene/item_tile.tscn" id="3_jlna8"]
+[ext_resource type="Script" uid="uid://bvpy42tqm76rs" path="res://scene/bag/item_slot.gd" id="1_jlna8"]
+[ext_resource type="PackedScene" uid="uid://cwxb4x5kmt8x8" path="res://scene/bag/item_tile.tscn" id="3_jlna8"]
 
 [node name="MarginContainer" type="MarginContainer"]
 custom_minimum_size = Vector2(88, 88)
