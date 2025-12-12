@@ -14,7 +14,7 @@
       "cast_method": "COST",
       "cost": 2,
       "effect_value": 3,
-      "icon_path": "res://assets/spell/fireball.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_00.png"
     },
     {
       "id": "spell_002",
@@ -28,22 +28,23 @@
       "cast_method": "COST",
       "cost": 3,
       "summon_id": "follower_021",
-      "icon_path": "res://assets/spell/summon_water_elemental.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_01.png"
     },
     {
       "id": "spell_003",
       "name": "力量祝福",
-      "description": "使一个友方随从获得+2攻击力。",
+      "description": "使三个友方随从获得+1+1。",
       "item_type": "SPELL",
       "rarity": "COMMON",
       "price": 10,
       "spell_type": "BUFF",
-      "target_type": "FRIENDLY",
-      "cast_method": "COST",
+      "target_type": "FRIENDLY_3",
+      "cast_method": "LOOP",
+      "loop_count": 1,
       "cost": 1,
-      "effect_value": 2,
+      "effect_value": 1,
       "effect_attribute": "attack",
-      "icon_path": "res://assets/spell/strength_blessing.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_02.png"
     },
     {
       "id": "spell_004",
@@ -58,7 +59,7 @@
       "cost": 5,
       "effect_value": 2,
       "additional_effect": "FREEZE",
-      "icon_path": "res://assets/spell/blizzard.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_03.png"
     },
     {
       "id": "spell_005",
@@ -73,7 +74,7 @@
       "cost": 4,
       "effect_value": 3,
       "additional_effect": "LIFESTEAL",
-      "icon_path": "res://assets/spell/life_siphon.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_04.png"
     },
     {
       "id": "spell_006",
@@ -88,7 +89,7 @@
       "cost": 3,
       "effect_value": 2,
       "effect_attribute": "draw",
-      "icon_path": "res://assets/spell/arcane_intelligence.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_05.png"
     },
     {
       "id": "spell_007",
@@ -103,7 +104,7 @@
       "loop_count": 3,
       "loop_interval": 1,
       "effect_value": 2,
-      "icon_path": "res://assets/spell/corruption.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_06.png"
     },
     {
       "id": "spell_008",
@@ -117,7 +118,7 @@
       "cast_method": "COST",
       "cost": 2,
       "effect_attribute": "mana_crystal",
-      "icon_path": "res://assets/spell/wild_growth.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_07.png"
     },
     {
       "id": "spell_009",
@@ -131,7 +132,7 @@
       "cast_method": "COST",
       "cost": 10,
       "effect_attribute": "control",
-      "icon_path": "res://assets/spell/mind_control.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_08.png"
     },
     {
       "id": "spell_010",
@@ -145,7 +146,7 @@
       "cast_method": "COST",
       "cost": 7,
       "effect_value": 4,
-      "icon_path": "res://assets/spell/flame_strike.png"
+      "icon_path": "res://assets/Skill_pack/skill_icon_09.png"
     }
   ],
   "spell_type_definitions": {

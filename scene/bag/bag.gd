@@ -1,24 +1,27 @@
 extends MarginContainer
-@export var items = []:
-	set(value):
-		items = value
-		# 当items改变时发出信号
-		items_changed.emit()
 
 # 信号：当items数组改变时发出
 signal items_changed()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(40):
-		items.append({})
+		Global.items.append({})
 	var item_wrap =$MarginContainer/VBoxContainer/MarginContainer2/NinePatchRect/MarginContainer2/ScrollContainer/MarginContainer/item_wrap
 	# 实例化 item_slot 场景
-	var item_slot_scene = preload("res://scene/item_slot.tscn")
-	for i in items:
+	var item_slot_scene = preload("res://scene/bag/item_slot.tscn")
+	for i in Global.items:
 		var slot = item_slot_scene.instantiate()
 		item_wrap.add_child(slot)
-	add_item_by_id("follower_006","FOLLOWER")
 	items_changed.connect(_on_items_changed)
+	init_data()
+
+func init_data() ->void:
+	print("初始化背包数据",Global.init_bag)
+	if Global.init_bag:
+		for item in Global.init_bag:
+			var item_type = item.split("_")[0]
+			add_item_by_id(item,item_type)
+
 # 加载随从数据
 func load_followers_data() -> Dictionary:
 	var file_path = "res://item/followers_data.json"
@@ -58,8 +61,8 @@ func get_follower_by_id(follower_id: String) -> Dictionary:
 func add_item(name: String, type: String) -> void:
 	# 查找第一个空槽位
 	var empty_slot_index = -1
-	for i in range(items.size()):
-		if items[i].is_empty():
+	for i in range(Global.items.size()):
+		if Global.items[i].is_empty():
 			empty_slot_index = i
 			break
 	
@@ -82,7 +85,7 @@ func add_item(name: String, type: String) -> void:
 		return
 	
 	# 添加到背包
-	items[empty_slot_index] = item_data
+	Global.items[empty_slot_index] = item_data
 	
 	# 更新UI显示
 	update_slot_display(empty_slot_index)
@@ -106,7 +109,7 @@ func update_slot_display(slot_index: int) -> void:
 	var slot = item_wrap.get_child(slot_index)
 	
 	# 获取物品数据
-	var item_data = items[slot_index]
+	var item_data = Global.items[slot_index]
 	
 	
 	# 设置物品图标（如果有）
@@ -127,7 +130,7 @@ func update_slot_display(slot_index: int) -> void:
 
 # 检查背包是否已满
 func is_bag_full() -> bool:
-	for item in items:
+	for item in Global.items:
 		if item.is_empty():
 			return false
 	return true
@@ -135,7 +138,7 @@ func is_bag_full() -> bool:
 # 获取空槽位数量
 func get_empty_slot_count() -> int:
 	var count = 0
-	for item in items:
+	for item in Global.items:
 		if item.is_empty():
 			count += 1
 	return count
@@ -146,6 +149,7 @@ func add_item_by_id(item_id: String, type: String) -> void:
 		"FOLLOWER":
 			var follower_data = get_follower_by_id(item_id)
 			if not follower_data.is_empty():
+				print('添加随从:',follower_data.get("name", ""))
 				add_item(follower_data.get("name", ""), type)
 			else:
 				print("未找到ID为 ", item_id, " 的随从")
@@ -154,21 +158,21 @@ func add_item_by_id(item_id: String, type: String) -> void:
 
 # 移除指定槽位的物品
 func remove_item(slot_index: int) -> void:
-	if slot_index < 0 or slot_index >= items.size():
+	if slot_index < 0 or slot_index >= Global.items.size():
 		print("无效的槽位索引: ", slot_index)
 		return
 	
-	items[slot_index] = {}
+	Global.items[slot_index] = {}
 	update_slot_display(slot_index)
 	print("已移除槽位 ", slot_index, " 的物品")
 
 # 获取指定槽位的物品数据
 func get_item_at(slot_index: int) -> Dictionary:
-	if slot_index < 0 or slot_index >= items.size():
+	if slot_index < 0 or slot_index >= Global.items.size():
 		print("无效的插槽索引: ", slot_index)
 		return {}
 	
-	return items[slot_index]
+	return Global.items[slot_index]
 
 # 重新渲染所有插槽
 func render_all_slots() -> void:
@@ -176,16 +180,16 @@ func render_all_slots() -> void:
 	var item_wrap = $MarginContainer/VBoxContainer/MarginContainer2/NinePatchRect/MarginContainer2/ScrollContainer/MarginContainer/item_wrap
 	
 	# 确保插槽数量与items数组大小一致
-	while item_wrap.get_child_count() < items.size():
-		var item_slot_scene = preload("res://scene/item_slot.tscn")
+	while item_wrap.get_child_count() < Global.items.size():
+		var item_slot_scene = preload("res://scene/bag/item_slot.tscn")
 		var slot = item_slot_scene.instantiate()
 		item_wrap.add_child(slot)
 	
 	# 更新所有插槽的显示
-	for i in range(items.size()):
+	for i in range(Global.items.size()):
 		update_slot_display(i)
 	
-	print("完成渲染 ", items.size(), " 个插槽")
+	print("完成渲染 ", Global.items.size(), " 个插槽")
 
 # 当items数组改变时的回调
 func _on_items_changed() -> void:
@@ -194,17 +198,17 @@ func _on_items_changed() -> void:
 
 # 处理物品转移（从源插槽移动到目标插槽）
 func transfer_item(from_slot_index: int, to_slot_index: int) -> void:
-	if from_slot_index < 0 or from_slot_index >= items.size():
+	if from_slot_index < 0 or from_slot_index >= Global.items.size():
 		print("无效的源插槽索引: ", from_slot_index)
 		return
 	
-	if to_slot_index < 0 or to_slot_index >= items.size():
+	if to_slot_index < 0 or to_slot_index >= Global.items.size():
 		print("无效的目标插槽索引: ", to_slot_index)
 		return
 	
 	# 获取源插槽和目标插槽的物品数据
-	var from_item = items[from_slot_index]
-	var to_item = items[to_slot_index]
+	var from_item = Global.items[from_slot_index]
+	var to_item = Global.items[to_slot_index]
 	
 	# 如果源插槽为空，无法转移
 	if from_item.is_empty():
@@ -213,13 +217,13 @@ func transfer_item(from_slot_index: int, to_slot_index: int) -> void:
 	
 	# 如果目标插槽为空，直接移动
 	if to_item.is_empty():
-		items[to_slot_index] = from_item
-		items[from_slot_index] = {}
+		Global.items[to_slot_index] = from_item
+		Global.items[from_slot_index] = {}
 		print("物品从插槽 ", from_slot_index, " 移动到插槽 ", to_slot_index)
 	else:
 		# 如果目标插槽有物品，交换位置
-		items[to_slot_index] = from_item
-		items[from_slot_index] = to_item
+		Global.items[to_slot_index] = from_item
+		Global.items[from_slot_index] = to_item
 		print("物品从插槽 ", from_slot_index, " 与插槽 ", to_slot_index, " 交换")
 	
 	# 触发items_changed信号，自动重新渲染
@@ -227,11 +231,11 @@ func transfer_item(from_slot_index: int, to_slot_index: int) -> void:
 
 # 设置指定槽位的物品数据
 func set_item_at(slot_index: int, item_data: Dictionary) -> void:
-	if slot_index < 0 or slot_index >= items.size():
+	if slot_index < 0 or slot_index >= Global.items.size():
 		print("无效的插槽索引: ", slot_index)
 		return
 	
-	items[slot_index] = item_data
+	Global.items[slot_index] = item_data
 	
 	# 触发items_changed信号，自动重新渲染
 	items_changed.emit()

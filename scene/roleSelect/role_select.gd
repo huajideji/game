@@ -40,7 +40,31 @@ func _update_selected_visual():
 func _on_start_pressed():
 	if selected_role == 0:
 		return
-	
 	else:
+		var file_path = "res://scene/roleSelect/role_data/jsonData"+str(selected_role) 
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		if file == null:
+			print("没有找到角色文件")
+			return {}
+		
+		var json_text = file.get_as_text()
+		
+		file.close()
+		
+		var json = JSON.new()
+		var parse_result = json.parse(json_text)
+		if parse_result != OK:
+			print("JSON解析错误: ", json.get_error_message())
+			return {}
+		print(json.data)
+		json.data.get('initial_followers')
+		json.data.get('initial_spells')
+		# 将角色初始数据合并到全局物品列表
+		for follower in json.data.get('initial_followers', []):
+			Global.init_bag.push_back(follower)
+		for spell in json.data.get('initial_spells', []):
+			Global.init_bag.push_back(spell)
+		
+		get_tree().change_scene_to_file("res://scene/bag/bag.tscn")
 		return
 	

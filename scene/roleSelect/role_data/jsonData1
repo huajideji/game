@@ -8,7 +8,7 @@
   "followers_slots": 3,
   "spells_slots": 3,
   "initial_followers": ["follower_001", "follower_001", "follower_001"],
-  "initial_spells": ["1001", "1001", "1002"],
+  "initial_spells": ["spell_003"],
   "initial_relics": ["2001"],
   "initial_gold": 100,
   "starting_items": ["1", "2", "3"]
